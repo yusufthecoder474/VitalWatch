@@ -1,0 +1,9 @@
+VitalWatch | EDUCATIONAL SIMULATOR | NON-CLINICAL DEMO THRESHOLDS
+HR: 60..100  SpO2: 90..100  Temp C: 36..38
+UTC timestamp         HR BPM   SpO2 %   Temp C   Sensor/event status
+2026-10-15T03:06:31Z     76.0     97.0     37.1  CONNECTED
+2026-10-15T03:06:32Z    120.0     96.0     37.0  CONNECTED | DEMO_ALERT:heart_rate
+2026-10-15T03:06:33Z     82.0     85.0     36.5  CONNECTED | DEMO_ALERT:oxygen
+2026-10-15T03:06:34Z     79.0     98.0     39.0  CONNECTED | DEMO_ALERT:temperature
+Processed 4 readings. Logs: logs-signal
+Exit code: 0; CSV data rows: 4

@@ -1,0 +1,14 @@
+[  9%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/ReadingValidator.cpp.o
+[ 18%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/SensorSimulator.cpp.o
+[ 27%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/AlertEngine.cpp.o
+[ 36%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/EventLogger.cpp.o
+[ 45%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/Replay.cpp.o
+[ 54%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/Pipeline.cpp.o
+[ 63%] Linking CXX static library libvitalwatch_core.a
+[ 63%] Built target vitalwatch_core
+[ 72%] Building CXX object CMakeFiles/vitalwatch.dir/src/main.cpp.o
+[ 81%] Building CXX object CMakeFiles/vitalwatch_tests.dir/tests/tests.cpp.o
+[ 90%] Linking CXX executable vitalwatch
+[ 90%] Built target vitalwatch
+[100%] Linking CXX executable vitalwatch_tests
+[100%] Built target vitalwatch_tests
