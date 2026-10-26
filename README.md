@@ -9,12 +9,27 @@
 ![Language](https://img.shields.io/badge/Language-C%2B%2B17-blue?style=flat-square)
 ![Build](https://img.shields.io/badge/Build-CMake-informational?style=flat-square)
 ![Testing](https://img.shields.io/badge/Testing-CTest-informational?style=flat-square)
-![Verification](https://img.shields.io/badge/Recorded%20Linux%20run-23%2F23%20tests%20passed-brightgreen?style=flat-square)
+![Verification](https://img.shields.io/badge/Recorded%20Linux%20run-39%2F39%20tests%20passed-brightgreen?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Educational%20simulator-orange?style=flat-square)
 
 [Quick Start](#quick-start) · [How It Works](#how-it-works) · [Evidence](#verified-results) · [Architecture](docs/ARCHITECTURE.md) · [Interview Guide](docs/INTERVIEW.md)
 
 </div>
+
+## Current firmware reliability enhancement — 2026-10-26
+
+The recovered source passed **33/33 baseline tests before modification**; the enhanced Linux/Bash suite passes **39/39**, including all existing tests. Changes are limited to sanitizer options, six deterministic fault/backpressure cases, a standard-library Python validator and measured performance/latency tooling. The application still has one producer, one consumer and the same CLI behavior. Optional bounded capacity is a library/test feature; the CLI keeps its original unbounded default.
+
+Read [the current enhancement report](docs/FIRMWARE_RELIABILITY.md), [measured performance](evidence/firmware/PERFORMANCE.md) and [the combined MiPhi verification report](MiPhi-Project-Verification-Report.md). The current results supersede the historical Thales section below. The second MiPhi project's source/name was not supplied or recoverable in this task; its report section is explicitly pending.
+
+```bash
+cmake -S . -B build-release -DCMAKE_BUILD_TYPE=Release -DVITALWATCH_WARNINGS_AS_ERRORS=ON
+cmake --build build-release --parallel 2
+(cd build-release && ctest --output-on-failure)
+python3 tools/validate_vitalwatch.py --exe build-release/vitalwatch --data-dir data --output evidence/my-validation --repeats 5 --latency-probe build-release/vitalwatch_firmware_tests
+```
+
+GCC/Clang can enable VITALWATCH_ENABLE_ASAN and VITALWATCH_ENABLE_UBSAN together; MSVC supports the ASan option only. Native Windows/Clang and hosted CI execution remain pending. Python is needed only for the added validator. The combined ASan/UBSan run with leak detection disabled passed 39/39; the default leak-enabled runtime failed in this environment and is not counted as a pass. No performance improvement is claimed.
 
 > [!IMPORTANT]
 > **Educational software only.** VitalWatch processes **synthetic** readings, not real patient information. Its thresholds are non-clinical demonstration rules. It is **not a medical device**, was not clinically validated, and is not affiliated with Philips or any healthcare manufacturer.
@@ -34,20 +49,23 @@ Unlike a UI-only demonstration, VitalWatch includes executable test cases and ch
 - **Observable output:** a console table plus `readings.csv` and `events.csv` records what happened.
 - **Failure handling:** injected producer/consumer exceptions and malformed inputs are covered by tests.
 
-## Verified results
+## Historical Thales verification — 2026-10-22
 
-These results come from the project's **recorded Linux/GCC verification session on 2026-10-15**; see the evidence files for exact output. They are not claims of native Windows execution or production performance.
+These results come from the **2026-10-22 Thales preparation audit of this attached source**, using Linux/GCC. The original 23-case suite was rerun before modifications; the current Linux suite has 33 cases. See [the current report](docs/THALES_VERIFICATION.md) for source identity, exact commands, failed diagnostic attempts and limitations. These are not native Windows or production-performance claims.
 
 | Verification | Observed result | Evidence |
 | --- | --- | --- |
-| Automated checks | **23 / 23 CTest cases passed** in Release, 0 failed | [`evidence/ctest-release.txt`](evidence/ctest-release.txt) |
+| Automated checks | **33 / 33 passed** in both Debug and Release, 0 failed, 0 skipped | [`evidence/thales/release-final.txt`](evidence/thales/release-final.txt), [`debug-final.txt`](evidence/thales/debug-final.txt) |
 | Producer–consumer FIFO | **1,000 samples** processed once and in order in the `shutdown` test | [`tests/tests.cpp`](tests/tests.cpp), [`docs/VERIFICATION.md`](docs/VERIFICATION.md) |
 | Deterministic console demo | **8 readings**, **6 emitted events** | [`evidence/demo-console.txt`](evidence/demo-console.txt), [`evidence/demo-events.csv`](evidence/demo-events.csv) |
-| Sample replay | Recorded output matched the deterministic demo in verification | [`docs/VERIFICATION.md`](docs/VERIFICATION.md) |
+| Larger pipeline workload | **10,000 generated and processed IDs**, zero missing, duplicate or out-of-order entries in the tested run | `large_fifo`, `sequence_audit`; [`tests/concurrency_tests.cpp`](tests/concurrency_tests.cpp) |
+| Sample replay | Current test compares generated/replayed reading and event CSVs | `deterministic_replay`; [`evidence/thales/release-final.txt`](evidence/thales/release-final.txt) |
 | Malformed replay input | Rejected with non-zero exit and line-number diagnostic | [`evidence/malformed-input.txt`](evidence/malformed-input.txt) |
-| SIGINT interruption | Recorded Linux run exited cleanly after processing 4 accepted samples | [`evidence/sigint-console.txt`](evidence/sigint-console.txt) |
+| SIGINT interruption | Automated Linux check waits for a flushed sample, sends SIGINT, checks exit and summary/row agreement | `signal_shutdown`; [`tools/check-signal.sh`](tools/check-signal.sh) |
+| UndefinedBehaviorSanitizer / ThreadSanitizer | **33/33 passed in each separate configuration**, no diagnostics reported | [`evidence/thales/ubsan-final.txt`](evidence/thales/ubsan-final.txt), [`tsan-final.txt`](evidence/thales/tsan-final.txt) |
+| AddressSanitizer + UBSan | **33/33 with leak detection explicitly disabled**; default leak-enabled run failed in this environment | [`evidence/thales/asan-ubsan-no-leaks.txt`](evidence/thales/asan-ubsan-no-leaks.txt); [limitations](docs/THALES_VERIFICATION.md) |
 
-**Environment:** Linux x86-64 · GCC 13.3.0 · CMake/CTest 3.28.3 · C++17. Native Windows/MSVC verification is still pending. No hardware, real patient data, clinical accuracy, thread throughput, or performance benchmarking is claimed.
+**Environment:** Linux x86-64 · GCC 13.3.0 · CMake/CTest 3.28.3 · C++17. Native Windows/MSVC and GitHub-hosted CI execution are pending. No current coverage or throughput measurement is claimed. Archived evidence directly under evidence/ and docs/VERIFICATION.md preserves the older session; evidence/thales/ records the current audit.
 
 ## Tech stack
 
@@ -63,7 +81,7 @@ These results come from the project's **recorded Linux/GCC verification session 
 ## Architecture
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[CLI options / config] --> B[Producer thread]
     B --> C[Sensor simulator or CSV replay]
     C --> D[Thread-safe FIFO queue]
@@ -77,6 +95,8 @@ flowchart LR
 The producer and consumer have separate responsibilities. The queue guards shared state with a mutex and uses a condition variable to wake the consumer when new data arrives or the queue closes. The processing path validates input **before** applying demo alert rules, so disconnected or invalid values are not interpreted as threshold events.
 
 For component ownership, error propagation, shutdown semantics, requirements traceability, and design trade-offs, read **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**.
+
+For the queue's deque backing, operation complexity, memory bounds and the distinction between input/dequeue/completion/output order, read **[docs/CONCURRENCY.md](docs/CONCURRENCY.md)**. The application still has exactly one producer and one consumer.
 
 ## Quick start
 
@@ -92,6 +112,16 @@ cmake --build build --parallel
 ctest --test-dir build --output-on-failure
 ./build/vitalwatch --deterministic --count 8 --interval-ms 0 --log-dir logs-demo
 ```
+
+The reproducible warning-strict helper keeps configurations separate:
+
+```bash
+bash tools/check.sh release
+bash tools/check.sh debug
+shellcheck tools/*.sh
+```
+
+It checks prerequisites, returns 2 for invalid usage/profile, 127 for missing prerequisites, and propagates configure/build/CTest failures. A C++17 compiler, CMake, CTest and a Make/Ninja build tool are required. ShellCheck is an optional developer tool. Run `bash tools/check.sh ubsan`, `asan-ubsan`, or `tsan` for separate Debug diagnostic builds. Never combine TSan and ASan in one executable. See [diagnostic instructions](docs/THALES_VERIFICATION.md) before interpreting results.
 
 The final command should print a table of eight synthetic readings and write two CSV files under `logs-demo/`. To inspect them:
 
@@ -171,7 +201,7 @@ On Windows, replace `./build/vitalwatch` with `.\build\Release\vitalwatch.exe`. 
 
 ## Testing and reproducibility
 
-The CMake configuration registers **20 component/integration tests plus 3 CLI checks**. Tests cover sensor input boundaries, missing/disconnected values, rule configuration, strict CSV parsing, FIFO close/drain, worker exceptions, and CLI error paths.
+The current CMake configuration retains all 33 checks from the Thales baseline and adds six firmware-reliability cases: **39 cases on this Linux/Bash environment**. Other supported build targets register 37 portable cases; that is a platform registration difference, not 2 skipped tests. Windows execution remains pending. Each test has a 10-second timeout.
 
 ```bash
 ctest --test-dir build --output-on-failure
@@ -183,7 +213,7 @@ For a focused test:
 ctest --test-dir build -R "^(shutdown|producer_error|consumer_error)$" --output-on-failure
 ```
 
-The suite uses throwing checks that still run in Release. The recorded Linux build also used `-Wall -Wextra -Wpedantic -Werror`. The badge above refers to **that recorded verification**, not to a live GitHub Actions job. GitHub Actions CI is **not included in this source package**.
+The suite uses throwing checks that still run in Release. The Linux helper enables `-Wall -Wextra -Wpedantic -Werror`. CLI checks verify both exact exit codes and diagnostics; output matching cannot hide a failing process exit. The badge above refers to local recorded execution. `.github/workflows/build.yml` configures Linux Debug/Release and ShellCheck automation; it has **not been executed on GitHub** in this session.
 
 More detail: [Testing & debugging](docs/TESTING.md) · [Verification report](docs/VERIFICATION.md) · [Raw CTest evidence](evidence/ctest-release.txt).
 
@@ -212,15 +242,15 @@ VitalWatch/
 - **C++17 and the STL** demonstrate standard threads, data ownership and low-level synchronization without external runtime packages. This is a learning and software-design choice, **not a performance superiority claim**.
 - **One consumer writes logs** to avoid concurrent file-stream writes; CSV prioritizes traceability over persistence/performance.
 - **Strict replay parsing** favors reproducibility but intentionally supports a narrow CSV format (unquoted, five fields).
-- **Unbounded queue and preloaded replay** keep the MVP easy to understand; backpressure and streaming large datasets are future work.
+- **Unbounded CLI default and preloaded replay** preserve the original workflows. Library callers can opt into bounded capacity/backpressure; streaming large replay datasets remains future work.
 - **Deterministic tests** verify exercised scenarios, not every possible thread interleaving or guaranteed hard real-time behavior.
 
 ## Limitations and responsible use
 
 - No real sensors or patient data; no clinical, medical-device, safety, certification, or standards claims.
-- No GUI/web portal, hardware firmware, cloud deployment, live CI pipeline, or throughput benchmark.
+- No GUI/web portal, hardware firmware, cloud deployment, verified hosted CI run, or throughput benchmark.
 - Windows/MSVC build and Windows Ctrl+C behavior remain **unverified**.
-- No alarm persistence/acknowledgement, timed missing-data watchdog, per-channel link states, or bounded-queue backpressure.
+- No alarm persistence/acknowledgement, timed missing-data watchdog or per-channel link states. Bounded-queue backpressure is available only through the library/test API, not a new CLI option.
 - Logs are for local demonstrations; they are not a secure clinical audit trail. Forced process termination can interrupt output.
 
 These limitations are intentional and discussed further in [architecture documentation](docs/ARCHITECTURE.md).
@@ -230,6 +260,9 @@ These limitations are intentional and discussed further in [architecture documen
 | Document | What you'll find |
 | --- | --- |
 | [Architecture](docs/ARCHITECTURE.md) | System diagram, module responsibilities, thread ownership, SDLC and trade-offs |
+| [Concurrency and DSA](docs/CONCURRENCY.md) | Queue choice and complexity, ownership, four orders, shutdown and test limitations |
+| [Current audit](docs/THALES_VERIFICATION.md) | Current build, diagnostic results, source identity and skill evidence table |
+| [Thales interview notes](docs/THALES_INTERVIEW.md) | Simple project-specific answers and verified resume bullets |
 | [Testing](docs/TESTING.md) | Tests, debugging cases and Windows validation checklist |
 | [Verification](docs/VERIFICATION.md) | Observed results, supporting evidence and what remains untested |
 | [Interview preparation](docs/INTERVIEW.md) | Short project pitch, key decisions, 15 likely technical questions and suggested resume bullets |
@@ -239,8 +272,8 @@ These limitations are intentional and discussed further in [architecture documen
 ## Roadmap (not yet implemented)
 
 - [ ] Verify build/tests on native Windows/MSVC; capture new evidence.
-- [ ] Add GitHub Actions CI for Linux and Windows builds after local verification.
-- [ ] Add a bounded queue and explicit backpressure policy.
+- [ ] Execute the included Linux GitHub Actions workflow after publishing; native Windows CI is still future work.
+- [x] Add optional library-level bounded capacity with tested backpressure; preserve the unbounded CLI default.
 - [ ] Support timeout-based missing-data detection and log rotation.
 - [ ] Improve independent per-channel connection states.
 
@@ -248,4 +281,4 @@ These limitations are intentional and discussed further in [architecture documen
 
 **License:** No license is included in the supplied project. The repository should not claim MIT, Apache-2.0, or any other license until the owner explicitly selects one. Public GitHub visibility does **not** by itself grant reuse or redistribution rights.
 
-**Author:** [Mohammad Yusuf K A](https://github.com/yusufthecoder474) · Educational portfolio project · Source snapshot with recorded verification on 2026-10-15.
+**Author:** [Mohammad Yusuf K A](https://github.com/yusufthecoder474) · Educational portfolio project · Current Linux audit: 2026-10-22; original historical verification: 2026-10-15.

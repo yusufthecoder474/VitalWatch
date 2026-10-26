@@ -1,0 +1,16 @@
+[ 15%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/ReadingValidator.cpp.o
+[ 15%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/SensorSimulator.cpp.o
+[ 23%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/AlertEngine.cpp.o
+[ 30%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/EventLogger.cpp.o
+[ 38%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/Replay.cpp.o
+[ 46%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/Pipeline.cpp.o
+[ 53%] Linking CXX static library libvitalwatch_core.a
+[ 53%] Built target vitalwatch_core
+[ 69%] Linking CXX executable vitalwatch_tests
+[ 69%] Building CXX object CMakeFiles/vitalwatch.dir/src/main.cpp.o
+[ 76%] Built target vitalwatch_tests
+[ 84%] Linking CXX executable vitalwatch_concurrency_tests
+[ 92%] Built target vitalwatch_concurrency_tests
+[100%] Linking CXX executable vitalwatch
+[100%] Built target vitalwatch
+-rwxr-xr-x 1 root root 1198528 Oct 22 14:42 build-tsan/vitalwatch

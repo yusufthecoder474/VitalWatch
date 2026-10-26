@@ -1,0 +1,18 @@
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /workspace/scratch/bb8633e62f1c/thales-work/VitalWatch/build-debug
+[ 15%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/SensorSimulator.cpp.o
+[ 15%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/ReadingValidator.cpp.o
+[ 23%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/AlertEngine.cpp.o
+[ 30%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/EventLogger.cpp.o
+[ 38%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/Replay.cpp.o
+[ 46%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/Pipeline.cpp.o

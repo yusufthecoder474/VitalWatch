@@ -5,8 +5,8 @@
 #include <thread>
 namespace vitalwatch {
 void runPipeline(const std::function<std::optional<Reading>()>& source,
-                 const std::function<void(const Reading&)>& sink, unsigned intervalMs) {
-    ThreadSafeQueue<Reading> queue;
+                 const std::function<void(const Reading&)>& sink, unsigned intervalMs, std::size_t queueCapacity) {
+    ThreadSafeQueue<Reading> queue(queueCapacity);
     std::exception_ptr producerError, consumerError;
     std::thread consumer([&] {
         try { Reading r; while (queue.pop(r)) sink(r); }

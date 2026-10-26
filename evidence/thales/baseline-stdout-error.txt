@@ -1,0 +1,1 @@
+Baseline redirected stdout to /dev/full, exit code: 0

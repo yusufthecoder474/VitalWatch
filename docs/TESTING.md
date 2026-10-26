@@ -10,7 +10,7 @@ ctest --test-dir build -C Release -R "^(shutdown|producer_error|consumer_error)$
 .\build\Release\vitalwatch_tests.exe malformed
 ```
 
-On Linux use the same CTest commands without `-C Release`, and `./build/vitalwatch_tests malformed`. There are **23 registered CTest cases**: 20 named core/component/integration cases and 3 CLI cases. A case can perform several checks. Do not describe these as 23 unit tests or as a coverage percentage.
+On Linux use the same CTest commands without `-C Release`, and `./build/vitalwatch_tests malformed`. The updated Linux/Bash suite has **33 cases**: the original 23, 8 new pipeline/sequence/replay cases and 2 Linux-specific checks. Non-Linux platforms register 31 portable cases. A case can perform several checks. Current evidence and diagnostic limits are in [THALES_VERIFICATION.md](THALES_VERIFICATION.md).
 
 ## Strategy
 
@@ -20,7 +20,7 @@ On Linux use the same CTest commands without `-C Release`, and `./build/vitalwat
 - `require()` throws on failure and the test runner returns 1. No checks depend on C `assert`, so `-DNDEBUG` cannot disable them.
 - Each CTest process has a 10-second timeout. The `shutdown` case verifies all 1,000 timestamps in order, catching lost/duplicated/reordered deliveries as well as hangs.
 - The CSV case compares the complete known sample row and verifies quote escaping. Generated fixtures use case-specific directories and remove them after execution.
-- `WILL_FAIL` CLI cases expect a nonzero exit; they do not validate exact diagnostic wording. CTest also reports exceptional process failures.
+- CLI wrappers require exit 0 and no error output for the demo, or exact exit 1 and the expected diagnostic for bad arguments. They replace regex-only success and generic WILL_FAIL checks, which could mask an unrelated failure.
 
 ## Repeatable demo expectations
 
@@ -59,4 +59,4 @@ These are reproducible exercises, not claims about past production incidents:
 
 ## Manual Windows checklist
 
-Build with MSVC Release; run all 23 CTest cases; run the sample replay; inspect both CSVs; run 100 samples with 1000 ms interval and press Ctrl+C after a few rows. Confirm a `Processed ...` summary and exit without a hang. A Linux pass does not substitute for this native Windows check.
+Build with MSVC Release; run all 31 portable CTest cases; run the sample replay; inspect both CSVs; run 100 samples with 1000 ms interval and press Ctrl+C after a few rows. Confirm a `Processed ...` summary and exit without a hang. A Linux pass does not substitute for this native Windows check.

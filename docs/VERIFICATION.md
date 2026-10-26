@@ -1,5 +1,7 @@
 # Actual verification results
 
+**Historical report:** this preserves the 2026-10-15 session. See [THALES_VERIFICATION.md](THALES_VERIFICATION.md) for the current attached-source audit and 33-case Linux suite.
+
 Session date: 2026-10-15. Environment: Linux x86-64, GCC 13.3.0, CMake/CTest 3.28.3. This is verification of an educational software simulator, not clinical validation.
 
 ## Build and automated tests

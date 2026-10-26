@@ -1,5 +1,7 @@
 # Publish VitalWatch to GitHub (Windows CMD)
 
+Update for the current source package: copy the changed source, tests, tools and workflow into your existing project without nesting a second VitalWatch directory. Review with `git diff` and `git status`, then stage the intended files. A Linux Debug/Release GitHub Actions workflow is now included, but no hosted workflow result was verified here. The original instructions below describe the earlier documentation-only upload.
+
 **Repository owner:** `yusufthecoder474` · **proposed repository name:** `VitalWatch`.
 
 The uploaded ZIP did not contain a `.git` directory. The user has already initialized a local Git repository on the `main` branch and staged the existing source files. The commands below are designed to preserve that work.
@@ -78,7 +80,7 @@ Open the URL **after the repository exists**:
 
 https://github.com/yusufthecoder474/VitalWatch
 
-Confirm the README renders, documentation links work, and `src/`, `include/`, `tests/`, `data/`, and `evidence/` are visible. Do not claim a GitHub Actions CI pass because no workflow exists in this version.
+Confirm the README renders, documentation links work, and source/test/data/evidence files are visible. The included workflow remains configured-but-unverified until its actual GitHub run is reviewed; do not claim a hosted CI pass from local tests.
 
 ## 6. Add to the resume
 

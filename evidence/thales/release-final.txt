@@ -1,0 +1,78 @@
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /workspace/scratch/bb8633e62f1c/thales-work/VitalWatch/build-release
+[ 53%] Built target vitalwatch_core
+[ 69%] Built target vitalwatch
+[ 84%] Built target vitalwatch_tests
+[100%] Built target vitalwatch_concurrency_tests
+Test project /workspace/scratch/bb8633e62f1c/thales-work/VitalWatch/build-release
+      Start  1: valid
+ 1/33 Test  #1: valid ............................   Passed    0.00 sec
+      Start  2: invalid_hr
+ 2/33 Test  #2: invalid_hr .......................   Passed    0.00 sec
+      Start  3: invalid_oxygen
+ 3/33 Test  #3: invalid_oxygen ...................   Passed    0.00 sec
+      Start  4: invalid_temperature
+ 4/33 Test  #4: invalid_temperature ..............   Passed    0.00 sec
+      Start  5: threshold
+ 5/33 Test  #5: threshold ........................   Passed    0.00 sec
+      Start  6: missing
+ 6/33 Test  #6: missing ..........................   Passed    0.00 sec
+      Start  7: disconnected
+ 7/33 Test  #7: disconnected .....................   Passed    0.00 sec
+      Start  8: csv
+ 8/33 Test  #8: csv ..............................   Passed    0.00 sec
+      Start  9: shutdown
+ 9/33 Test  #9: shutdown .........................   Passed    0.00 sec
+      Start 10: malformed
+10/33 Test #10: malformed ........................   Passed    0.00 sec
+      Start 11: deterministic
+11/33 Test #11: deterministic ....................   Passed    0.00 sec
+      Start 12: boundaries
+12/33 Test #12: boundaries .......................   Passed    0.00 sec
+      Start 13: config
+13/33 Test #13: config ...........................   Passed    0.00 sec
+      Start 14: producer_error
+14/33 Test #14: producer_error ...................   Passed    0.00 sec
+      Start 15: consumer_error
+15/33 Test #15: consumer_error ...................   Passed    0.00 sec
+      Start 16: queue_close
+16/33 Test #16: queue_close ......................   Passed    0.00 sec
+      Start 17: missing_file
+17/33 Test #17: missing_file .....................   Passed    0.00 sec
+      Start 18: replay
+18/33 Test #18: replay ...........................   Passed    0.00 sec
+      Start 19: config_invalid
+19/33 Test #19: config_invalid ...................   Passed    0.00 sec
+      Start 20: nonfinite
+20/33 Test #20: nonfinite ........................   Passed    0.00 sec
+      Start 21: cli_demo
+21/33 Test #21: cli_demo .........................   Passed    0.01 sec
+      Start 22: cli_invalid
+22/33 Test #22: cli_invalid ......................   Passed    0.01 sec
+      Start 23: cli_missing_argument
+23/33 Test #23: cli_missing_argument .............   Passed    0.01 sec
+      Start 24: empty_pipeline
+24/33 Test #24: empty_pipeline ...................   Passed    0.00 sec
+      Start 25: one_sample
+25/33 Test #25: one_sample .......................   Passed    0.00 sec
+      Start 26: large_fifo
+26/33 Test #26: large_fifo .......................   Passed    0.00 sec
+      Start 27: sequence_audit
+27/33 Test #27: sequence_audit ...................   Passed    0.00 sec
+      Start 28: queue_wait_close
+28/33 Test #28: queue_wait_close .................   Passed    0.00 sec
+      Start 29: queued_drain
+29/33 Test #29: queued_drain .....................   Passed    0.00 sec
+      Start 30: exact_worker_errors
+30/33 Test #30: exact_worker_errors ..............   Passed    0.00 sec
+      Start 31: deterministic_replay
+31/33 Test #31: deterministic_replay .............   Passed    0.00 sec
+      Start 32: stdout_error
+32/33 Test #32: stdout_error .....................   Passed    0.01 sec
+      Start 33: signal_shutdown
+33/33 Test #33: signal_shutdown ..................   Passed    1.01 sec
+
+100% tests passed, 0 tests failed out of 33
+
+Total Test time (real) =   1.12 sec

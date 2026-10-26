@@ -30,6 +30,8 @@ std::string value(const std::optional<double>& v) {
 int main(int argc, char** argv) {
     using namespace vitalwatch;
     try {
+        // Detect redirected-console failures just as we detect CSV failures.
+        std::cout.exceptions(std::ios::failbit | std::ios::badbit);
         unsigned count = 16, interval = 250, seed = 42;
         bool deterministic = false;
         std::string replay, config, logs = "logs";
@@ -39,6 +41,7 @@ int main(int argc, char** argv) {
                 std::cout << "VitalWatch --deterministic --count N --interval-ms N --seed N\n"
                              "           --replay FILE --config FILE --log-dir DIR\n"
                              "Count: 1..10000, interval: 0..1000 ms. Replay uses all rows.\n";
+                std::cout.flush();
                 return 0;
             }
             if (arg == "--deterministic") { deterministic = true; continue; }
@@ -88,6 +91,13 @@ int main(int argc, char** argv) {
             std::cout << '\n'; ++processed;
         },interval);
         std::cout << "Processed " << processed << " readings. Logs: " << logs << "\n";
+        std::cout.flush(); // Surface buffered write errors before reporting exit 0.
         return 0;
-    } catch (const std::exception& e) { std::cerr << "Error: " << e.what() << '\n'; return 1; }
+    } catch (const std::exception& e) {
+        // cerr is tied to cout: disable cout's exceptions before error reporting,
+        // otherwise its automatic flush can throw again while handling an error.
+        std::cout.exceptions(std::ios::goodbit);
+        std::cerr << "Error: " << e.what() << '\n';
+        return 1;
+    }
 }

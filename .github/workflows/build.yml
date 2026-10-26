@@ -1,0 +1,17 @@
+name: C++ Linux checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        profile: [debug, release]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check shell scripts
+        run: shellcheck tools/*.sh
+      - name: Configure, build and test
+        run: bash tools/check.sh ${{ matrix.profile }}

@@ -1,0 +1,7 @@
+timestamp,type,sensor,message
+2026-01-01T00:00:01Z,"DEMO_ALERT","heart_rate","Outside non-clinical demonstration thresholds"
+2026-01-01T00:00:02Z,"DEMO_ALERT","oxygen","Outside non-clinical demonstration thresholds"
+2026-01-01T00:00:03Z,"DEMO_ALERT","temperature","Outside non-clinical demonstration thresholds"
+2026-01-01T00:00:04Z,"INVALID","heart_rate","Outside simulator input domain"
+2026-01-01T00:00:05Z,"MISSING","oxygen","No value in this sample"
+2026-01-01T00:00:06Z,"DISCONNECTED","unit","Simulated sensor unit disconnected; values ignored"

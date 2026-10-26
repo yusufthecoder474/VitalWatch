@@ -1,0 +1,5 @@
+Profile usage / prerequisites checks:
+unknown profile exit: 2 (expected 2)
+missing prerequisite exit: 127 (expected 127)
+Unknown profile: unknown
+Missing prerequisite: cmake

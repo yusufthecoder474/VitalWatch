@@ -1,5 +1,7 @@
 # VitalWatch — 5-minute recruiter / interviewer demo
 
+This guide's original counts refer to historical evidence. The current suite has 33 Linux/Bash checks; use [THALES_VERIFICATION.md](THALES_VERIFICATION.md) for current results and [CONCURRENCY.md](CONCURRENCY.md) for ordering/ownership details.
+
 > Educational C++17 simulator; synthetic data only; **not** a medical device or clinical system.
 
 ## Before the demo

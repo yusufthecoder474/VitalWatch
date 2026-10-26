@@ -1,0 +1,1 @@
+b7122f44c618a7c5f5dcf8b678fd00e4900a62d76c27b522981e3a558c29c9b2  evidence/firmware/current-source.sha256

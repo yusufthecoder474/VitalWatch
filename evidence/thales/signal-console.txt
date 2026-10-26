@@ -1,0 +1,5 @@
+VitalWatch | EDUCATIONAL SIMULATOR | NON-CLINICAL DEMO THRESHOLDS
+HR: 60..100  SpO2: 90..100  Temp C: 36..38
+UTC timestamp         HR BPM   SpO2 %   Temp C   Sensor/event status
+2026-01-01T00:00:00Z     75.0     97.0     37.0  CONNECTED
+Processed 1 readings. Logs: /workspace/scratch/bb8633e62f1c/thales-work/VitalWatch/build-release/signal-test

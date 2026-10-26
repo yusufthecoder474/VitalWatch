@@ -1,0 +1,83 @@
+Test project /workspace/scratch/bb8633e62f1c/firmware-work/VitalWatch/build-firmware-asan
+      Start  1: valid
+ 1/39 Test  #1: valid ............................   Passed    0.01 sec
+      Start  2: invalid_hr
+ 2/39 Test  #2: invalid_hr .......................   Passed    0.01 sec
+      Start  3: invalid_oxygen
+ 3/39 Test  #3: invalid_oxygen ...................   Passed    0.01 sec
+      Start  4: invalid_temperature
+ 4/39 Test  #4: invalid_temperature ..............   Passed    0.01 sec
+      Start  5: threshold
+ 5/39 Test  #5: threshold ........................   Passed    0.01 sec
+      Start  6: missing
+ 6/39 Test  #6: missing ..........................   Passed    0.01 sec
+      Start  7: disconnected
+ 7/39 Test  #7: disconnected .....................   Passed    0.01 sec
+      Start  8: csv
+ 8/39 Test  #8: csv ..............................   Passed    0.01 sec
+      Start  9: shutdown
+ 9/39 Test  #9: shutdown .........................   Passed    0.01 sec
+      Start 10: malformed
+10/39 Test #10: malformed ........................   Passed    0.01 sec
+      Start 11: deterministic
+11/39 Test #11: deterministic ....................   Passed    0.01 sec
+      Start 12: boundaries
+12/39 Test #12: boundaries .......................   Passed    0.01 sec
+      Start 13: config
+13/39 Test #13: config ...........................   Passed    0.01 sec
+      Start 14: producer_error
+14/39 Test #14: producer_error ...................   Passed    0.01 sec
+      Start 15: consumer_error
+15/39 Test #15: consumer_error ...................   Passed    0.01 sec
+      Start 16: queue_close
+16/39 Test #16: queue_close ......................   Passed    0.01 sec
+      Start 17: missing_file
+17/39 Test #17: missing_file .....................   Passed    0.01 sec
+      Start 18: replay
+18/39 Test #18: replay ...........................   Passed    0.01 sec
+      Start 19: config_invalid
+19/39 Test #19: config_invalid ...................   Passed    0.04 sec
+      Start 20: nonfinite
+20/39 Test #20: nonfinite ........................   Passed    0.01 sec
+      Start 21: cli_demo
+21/39 Test #21: cli_demo .........................   Passed    0.02 sec
+      Start 22: cli_invalid
+22/39 Test #22: cli_invalid ......................   Passed    0.02 sec
+      Start 23: cli_missing_argument
+23/39 Test #23: cli_missing_argument .............   Passed    0.02 sec
+      Start 24: fw_malformed
+24/39 Test #24: fw_malformed .....................   Passed    0.01 sec
+      Start 25: fw_active_shutdown
+25/39 Test #25: fw_active_shutdown ...............   Passed    0.01 sec
+      Start 26: fw_capacity
+26/39 Test #26: fw_capacity ......................   Passed    0.01 sec
+      Start 27: fw_close_saturated
+27/39 Test #27: fw_close_saturated ...............   Passed    0.01 sec
+      Start 28: fw_bounded_exception
+28/39 Test #28: fw_bounded_exception .............   Passed    0.02 sec
+      Start 29: fw_replay_mismatch
+29/39 Test #29: fw_replay_mismatch ...............   Passed    0.01 sec
+      Start 30: empty_pipeline
+30/39 Test #30: empty_pipeline ...................   Passed    0.01 sec
+      Start 31: one_sample
+31/39 Test #31: one_sample .......................   Passed    0.01 sec
+      Start 32: large_fifo
+32/39 Test #32: large_fifo .......................   Passed    0.04 sec
+      Start 33: sequence_audit
+33/39 Test #33: sequence_audit ...................   Passed    0.01 sec
+      Start 34: queue_wait_close
+34/39 Test #34: queue_wait_close .................   Passed    0.01 sec
+      Start 35: queued_drain
+35/39 Test #35: queued_drain .....................   Passed    0.01 sec
+      Start 36: exact_worker_errors
+36/39 Test #36: exact_worker_errors ..............   Passed    0.01 sec
+      Start 37: deterministic_replay
+37/39 Test #37: deterministic_replay .............   Passed    0.03 sec
+      Start 38: stdout_error
+38/39 Test #38: stdout_error .....................   Passed    0.03 sec
+      Start 39: signal_shutdown
+39/39 Test #39: signal_shutdown ..................   Passed    1.04 sec
+
+100% tests passed, 0 tests failed out of 39
+
+Total Test time (real) =   1.58 sec

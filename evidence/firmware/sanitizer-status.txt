@@ -1,0 +1,2 @@
+ASan/UBSan with leaks: CTest exit 8
+ASan/UBSan without leaks: CTest exit 0

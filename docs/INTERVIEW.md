@@ -1,5 +1,7 @@
 # Project explanation and interview preparation
 
+This guide preserves the original Philips-oriented 23-case baseline. Use [THALES_INTERVIEW.md](THALES_INTERVIEW.md) and [THALES_VERIFICATION.md](THALES_VERIFICATION.md) for the current Thales preparation, 33-case Linux results and current resume bullets.
+
 ## 60-second explanation
 
 “VitalWatch is a small C++17 educational patient-monitoring simulator I can use to demonstrate software engineering fundamentals. It generates synthetic heart rate, oxygen saturation and temperature readings. A producer thread generates each sample and puts it into a shared queue. A consumer thread takes samples out, checks for missing, invalid or disconnected sensor data, applies configurable demonstration thresholds and writes readings and events to CSV files. The console shows the same readings and event labels. A mutex protects the queue and a condition variable lets the consumer sleep until work arrives. On completion, the queue closes, accepted samples drain and both threads join. The project includes deterministic scenarios, strict replay parsing and 23 CTest cases with checks that remain active in Release builds. These are non-clinical rules: it is a software simulator, not a medical device.”

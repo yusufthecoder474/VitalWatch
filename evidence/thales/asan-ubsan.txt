@@ -1,0 +1,276 @@
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /workspace/scratch/bb8633e62f1c/thales-work/VitalWatch/build-asan-ubsan
+[  7%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/ReadingValidator.cpp.o
+[ 15%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/SensorSimulator.cpp.o
+[ 23%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/AlertEngine.cpp.o
+[ 30%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/EventLogger.cpp.o
+[ 38%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/Replay.cpp.o
+[ 46%] Building CXX object CMakeFiles/vitalwatch_core.dir/src/Pipeline.cpp.o
+[ 53%] Linking CXX static library libvitalwatch_core.a
+[ 53%] Built target vitalwatch_core
+[ 61%] Building CXX object CMakeFiles/vitalwatch_tests.dir/tests/tests.cpp.o
+[ 69%] Building CXX object CMakeFiles/vitalwatch.dir/src/main.cpp.o
+[ 76%] Linking CXX executable vitalwatch
+[ 76%] Built target vitalwatch
+[ 84%] Building CXX object CMakeFiles/vitalwatch_concurrency_tests.dir/tests/concurrency_tests.cpp.o
+[ 92%] Linking CXX executable vitalwatch_tests
+[ 92%] Built target vitalwatch_tests
+[100%] Linking CXX executable vitalwatch_concurrency_tests
+[100%] Built target vitalwatch_concurrency_tests
+Test project /workspace/scratch/bb8633e62f1c/thales-work/VitalWatch/build-asan-ubsan
+      Start  1: valid
+ 1/33 Test  #1: valid ............................***Failed    0.01 sec
+==155==LeakSanitizer has encountered a fatal error.
+==155==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==155==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start  2: invalid_hr
+ 2/33 Test  #2: invalid_hr .......................***Failed    0.01 sec
+==157==LeakSanitizer has encountered a fatal error.
+==157==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==157==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start  3: invalid_oxygen
+ 3/33 Test  #3: invalid_oxygen ...................***Failed    0.01 sec
+==159==LeakSanitizer has encountered a fatal error.
+==159==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==159==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start  4: invalid_temperature
+ 4/33 Test  #4: invalid_temperature ..............***Failed    0.01 sec
+==161==LeakSanitizer has encountered a fatal error.
+==161==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==161==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start  5: threshold
+ 5/33 Test  #5: threshold ........................***Failed    0.01 sec
+==163==LeakSanitizer has encountered a fatal error.
+==163==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==163==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start  6: missing
+ 6/33 Test  #6: missing ..........................***Failed    0.01 sec
+==166==Can't open /proc/165/task for reading.
+==165==LeakSanitizer has encountered a fatal error.
+==165==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==165==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start  7: disconnected
+ 7/33 Test  #7: disconnected .....................***Failed    0.00 sec
+==168==Can't open /proc/167/task for reading.
+==167==LeakSanitizer has encountered a fatal error.
+==167==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==167==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start  8: csv
+ 8/33 Test  #8: csv ..............................***Failed    0.01 sec
+==170==Can't open /proc/169/task for reading.
+==169==LeakSanitizer has encountered a fatal error.
+==169==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==169==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start  9: shutdown
+ 9/33 Test  #9: shutdown .........................***Failed    0.01 sec
+==176==Can't open /proc/171/task for reading.
+==171==LeakSanitizer has encountered a fatal error.
+==171==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==171==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 10: malformed
+10/33 Test #10: malformed ........................***Failed    0.01 sec
+==178==Can't open /proc/177/task for reading.
+==177==LeakSanitizer has encountered a fatal error.
+==177==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==177==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 11: deterministic
+11/33 Test #11: deterministic ....................***Failed    0.01 sec
+==180==Can't open /proc/179/task for reading.
+==179==LeakSanitizer has encountered a fatal error.
+==179==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==179==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 12: boundaries
+12/33 Test #12: boundaries .......................***Failed    0.01 sec
+==182==Can't open /proc/181/task for reading.
+==181==LeakSanitizer has encountered a fatal error.
+==181==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==181==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 13: config
+13/33 Test #13: config ...........................***Failed    0.01 sec
+==184==Can't open /proc/183/task for reading.
+==183==LeakSanitizer has encountered a fatal error.
+==183==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==183==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 14: producer_error
+14/33 Test #14: producer_error ...................***Failed    0.01 sec
+==188==Can't open /proc/185/task for reading.
+==185==LeakSanitizer has encountered a fatal error.
+==185==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==185==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 15: consumer_error
+15/33 Test #15: consumer_error ...................***Failed    0.01 sec
+==192==Can't open /proc/189/task for reading.
+==189==LeakSanitizer has encountered a fatal error.
+==189==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==189==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 16: queue_close
+16/33 Test #16: queue_close ......................***Failed    0.01 sec
+==194==Can't open /proc/193/task for reading.
+==193==LeakSanitizer has encountered a fatal error.
+==193==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==193==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 17: missing_file
+17/33 Test #17: missing_file .....................***Failed    0.01 sec
+==196==Can't open /proc/195/task for reading.
+==195==LeakSanitizer has encountered a fatal error.
+==195==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==195==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 18: replay
+18/33 Test #18: replay ...........................***Failed    0.01 sec
+==198==Can't open /proc/197/task for reading.
+==197==LeakSanitizer has encountered a fatal error.
+==197==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==197==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 19: config_invalid
+19/33 Test #19: config_invalid ...................***Failed    0.01 sec
+==199==LeakSanitizer has encountered a fatal error.
+==199==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==199==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 20: nonfinite
+20/33 Test #20: nonfinite ........................***Failed    0.01 sec
+==202==Can't open /proc/201/task for reading.
+==201==LeakSanitizer has encountered a fatal error.
+==201==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==201==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 21: cli_demo
+21/33 Test #21: cli_demo .........................   Passed    0.01 sec
+      Start 22: cli_invalid
+22/33 Test #22: cli_invalid ......................   Passed    0.01 sec
+      Start 23: cli_missing_argument
+23/33 Test #23: cli_missing_argument .............   Passed    0.01 sec
+      Start 24: empty_pipeline
+24/33 Test #24: empty_pipeline ...................***Failed    0.01 sec
+==211==LeakSanitizer has encountered a fatal error.
+==211==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==211==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 25: one_sample
+25/33 Test #25: one_sample .......................***Failed    0.01 sec
+==218==Can't open /proc/215/task for reading.
+==215==LeakSanitizer has encountered a fatal error.
+==215==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==215==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 26: large_fifo
+26/33 Test #26: large_fifo .......................***Failed    0.03 sec
+==222==Can't open /proc/219/task for reading.
+==219==LeakSanitizer has encountered a fatal error.
+==219==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==219==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 27: sequence_audit
+27/33 Test #27: sequence_audit ...................***Failed    0.01 sec
+==224==Can't open /proc/223/task for reading.
+==223==LeakSanitizer has encountered a fatal error.
+==223==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==223==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 28: queue_wait_close
+28/33 Test #28: queue_wait_close .................***Failed    0.01 sec
+==227==Can't open /proc/225/task for reading.
+==225==LeakSanitizer has encountered a fatal error.
+==225==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==225==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 29: queued_drain
+29/33 Test #29: queued_drain .....................***Failed    0.01 sec
+==232==Can't open /proc/228/task for reading.
+==228==LeakSanitizer has encountered a fatal error.
+==228==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==228==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 30: exact_worker_errors
+30/33 Test #30: exact_worker_errors ..............***Failed    0.01 sec
+==238==Can't open /proc/233/task for reading.
+==233==LeakSanitizer has encountered a fatal error.
+==233==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==233==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 31: deterministic_replay
+31/33 Test #31: deterministic_replay .............***Failed    0.01 sec
+==244==Can't open /proc/239/task for reading.
+==239==LeakSanitizer has encountered a fatal error.
+==239==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1
+==239==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)
+
+      Start 32: stdout_error
+32/33 Test #32: stdout_error .....................***Failed    0.02 sec
+CMake Error at /workspace/scratch/bb8633e62f1c/thales-work/VitalWatch/tests/verify_stdout.cmake:6 (message):
+  Expected reported stdout write failure and exit 1, got Subprocess aborted:
+  terminate called after throwing an instance of 'std::__ios_failure'
+
+    what():  basic_ios::clear: iostream error
+
+
+
+
+      Start 33: signal_shutdown
+33/33 Test #33: signal_shutdown ..................***Failed    1.02 sec
+
+
+9% tests passed, 30 tests failed out of 33
+
+Total Test time (real) =   1.30 sec
+
+The following tests FAILED:
+	  1 - valid (Failed)
+	  2 - invalid_hr (Failed)
+	  3 - invalid_oxygen (Failed)
+	  4 - invalid_temperature (Failed)
+	  5 - threshold (Failed)
+	  6 - missing (Failed)
+	  7 - disconnected (Failed)
+	  8 - csv (Failed)
+	  9 - shutdown (Failed)
+	 10 - malformed (Failed)
+	 11 - deterministic (Failed)
+	 12 - boundaries (Failed)
+	 13 - config (Failed)
+	 14 - producer_error (Failed)
+	 15 - consumer_error (Failed)
+	 16 - queue_close (Failed)
+	 17 - missing_file (Failed)
+	 18 - replay (Failed)
+	 19 - config_invalid (Failed)
+	 20 - nonfinite (Failed)
+	 24 - empty_pipeline (Failed)
+	 25 - one_sample (Failed)
+	 26 - large_fifo (Failed)
+	 27 - sequence_audit (Failed)
+	 28 - queue_wait_close (Failed)
+	 29 - queued_drain (Failed)
+	 30 - exact_worker_errors (Failed)
+	 31 - deterministic_replay (Failed)
+	 32 - stdout_error (Failed)
+	 33 - signal_shutdown (Failed)
+Errors while running CTest

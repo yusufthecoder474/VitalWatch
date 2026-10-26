@@ -1,5 +1,7 @@
 # Requirements, architecture and SDLC
 
+Current concurrency/DSA details and ordering limits are in [CONCURRENCY.md](CONCURRENCY.md); current test counts, added build automation and diagnostic outcomes are in [THALES_VERIFICATION.md](THALES_VERIFICATION.md). The implementation retains the same acquisition/queue/processing architecture.
+
 ## Problem statement
 
 Monitoring software must distinguish usable data from sensor faults before applying rules. VitalWatch demonstrates that separation using only synthetic values and a small console program. The user's need is a repeatable, explainable portfolio demonstration with readable errors and inspectable logs, achievable within a 6–8 hour study window.
@@ -18,7 +20,7 @@ Monitoring software must distinguish usable data from sensor faults before apply
 | R8 | Report invalid CLI input with nonzero exit | `cli_invalid`, `cli_missing_argument` |
 | R9 | C++17, STL, portable CMake build, no third-party runtime libraries | Actual compiler/build evidence; native MSVC run still pending |
 | R10 | Checks stay enabled in Release | Throwing `require` checks; Release CTest execution |
-| R11 | SIGINT stops acquisition and drains accepted samples | Manual SIGINT check recorded in verification; not a CTest case |
+| R11 | SIGINT stops acquisition and drains accepted samples | Linux signal_shutdown CTest check; native Windows behavior pending |
 
 ## High-level design
 
